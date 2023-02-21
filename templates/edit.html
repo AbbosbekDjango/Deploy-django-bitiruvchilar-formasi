@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>BITIRUVCHILAR</title>
+  </head>
+  <body class=" bg-info text-light">
+    
+        <nav class="bg-primary p-4 col-10 mx-auto navbar-expand-lg navbar-dark bg-primary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">ASOSIY SAHIFA</a>
+          </div>
+        </nav>
+        <div class="container ">
+            <div class="row">
+                <div>
+                    <h2 class="text-white bg-primary text-center p-4 mt-3 col-12 mx-auto  d-inline-block">"{{d.fish}}" MALUMOTLARINI TAHRIRLASH</h2>
+                    <br> 
+
+                    <form action="/update/{{d.id}}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Hemis raqami" name="hemis_id" value="{{d.hemis_id}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Familya Ism Sharif" name="fish" value="{{d.fish}}" disabled>
+                        </div>
+                        <div class="form-group ">
+                            <p class="mt-2">Jinsi</p>
+                            <select id="jinsi" class="form-control mt-2" name="jinsi" disabled>
+                              <option selected >{{d.jinsi}}</option>
+                              <option>Erkak</option>
+                              <option>Ayol</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Pasport jshshr raqami" name="pasport_jshshr" value="{{d.pasport_jshshr}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Pasport seriya raqami" name="pasport_seriya" value="{{d.pasport_seriya}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Tug'ilgan sanangiz (2000-02-23) Iltimos avval yil keyin oy keyin esa kun kiriting" name="tugilgan_sana" value="{{d.tugilgan_sana}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Yo'nalishi (mutaxassislik) nomi" name="yonalish_nomi" value="{{d.yonalish_nomi}}" disabled>
+                        </div>
+                        <div class="form-group col-12">
+                            <p class="mt-2">O'qish holati</p>
+                            <select id="grant_kontrakt" class="form-control mt-2" name="grant_kontrakt"  disabled>
+                              <option selected>{{d.grant_kontrakt}}</option>
+                              <option>Grant</option>
+                              <option>Kontrakt</option>
+                            </select>
+                        </div>
+                            <div class="form-group col-12">
+                                <p class="mt-2">Viloyat</p>
+                                <select id="viloyat" class="form-control mt-2" name="viloyat" disabled>
+                                  <option selected>{{d.viloyat}}</option>
+                                  <option>Andijon</option>
+                                  <option>Farg'ona</option>
+                                  <option>Namangan</option>
+                                  <option>Toshkent</option>
+                                  <option>Buxoro</option>
+                                  <option>Samarqand</option>
+                                  <option>Navoiy</option>
+                                  <option>Surxondaryo</option>
+                                  <option>Sirdaryo</option>
+                                  <option>Qoraqalpog'iston</option>
+                                  <option>Xorazm</option>
+                                  <option>Jizzax</option>
+                                </select>
+                            </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Tuman" name="tuman" value="{{d.tuman}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="MFY" name="mfy" value="{{d.mfy}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="To'liq manzil" name="umumiy_manzil" value="{{d.umumiy_manzil}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="1-telefon raqam" name="telefon1" value="{{d.telefon1}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="2-telefon raqam" name="telefon2" value="{{d.telefon2}}" disabled>
+                        </div>
+                        <div class="form-group col-12">
+                            <p class="mt-2">Oilaviy holat</p>
+                            <select id="oila" class="form-control mt-2" name="oila">
+                              <option selected>{{d.oila}}</option>
+                              <option>Turmush qurgan</option>
+                              <option>Turmush qurmagan</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <p class="mt-2">Farzandingiz necha yosh atrofida</p>
+                            <select id="farzand" class="form-control mt-2" name="farzand">
+                              <option selected>{{d.farzand}}</option>
+                              <option>Xomilador</option>
+                              <option>1 yoshgacha</option>
+                              <option>2 yoshgacha</option>
+                              <option>2 yoshdan katta</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Farzandingiz yoshini to'liq kiriting" name="farzand_yoshi" value="{{d.farzand_yoshi}}">
+                        </div>
+                        <div class="form-group col-12">
+                            <p class="mt-2">Ish faoliyat</p>
+                            <select id="ish_faoliyat" class="form-control mt-0" name="ish_faoliyat">
+                              <option selected>{{d.ish_faoliyat}}</option>
+                              <option>Buyruq asosida ishlash</option>
+                              <option>Soatbay ishlayman</option>
+                              <option>Ishlamayman</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <p class="mt-2">Xozir ishlaysizmi</p>
+                            <select id="xozirgi_ish" class="form-control mt-2" name="xozirgi_ish">
+                              <option selected>{{d.xozirgi_ish}}</option>
+                              <option>Ha</option>
+                              <option>Yo'q</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Ish joyingiz manzili" name="ish_manzil" value="{{d.ish_manzil}}">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Ish joyingizgacha masofa" name="ish_masofa" value="{{d.ish_masofa}}">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Ish joyingizdagi lavozimingiz" name="lavozim" value="{{d.lavozim}}">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Qaysi tizimda ishlagan bo'lar edingiz" name="qaysi_tizimda_ishlash" value="{{d.qaysi_tizimda_ishlash}}">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" name="qoshimcha_izoh" value="{{d.qoshimcha_izoh}}" placeholder="Ishlash borasida fikringiz">
+                          </div>
+                        <div class="form-group col-12">
+                            <p class="mt-2">Oilaviy biznes qilish imkoniyatingiz bormi</p>
+                            <select id="oilaviy_biznes" class="form-control mt-2" name="oilaviy_biznes">
+                              <option selected>{{d.oilaviy_biznes}}</option>
+                              <option>Ha</option>
+                              <option>Yo'q</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <p class="mt-2">Biznes turlari</p>
+                            <select id="oilaviy_biznes2" class="form-control mt-2" name="oilaviy_biznes2">
+                              <option selected>{{d.oilaviy_biznes2}}</option>
+                              <option>Chorvachilik</option>
+                              <option>Tikuvchilik</option>
+                              <option>Xunarmandchilik</option>
+                              <option>O'quv markaz</option>
+                              <option>Dehqonchilik</option>
+                              <option>Boshqa soha</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <p class="mt-2">Kredit olishga ehtiyojingiz bormi</p>
+                            <select id="kredit_olish" class="form-control mt-2" name="kredit_olish">
+                              <option selected>{{d.kredit_olish}}</option>
+                              <option>Ha</option>
+                              <option>Yo'q</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Qancha kredit summa olmoqchisiz" name="kredit_summa" value="{{d.kredit_summa}}">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" placeholder="Kredit olishdan maqsadingiz" name="kredit_maqsad" value="{{d.kredit_maqsad}}">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mt-2" name="biznes_izox" value="{{d.biznes_izox}}" placeholder="Biznes borasida fikringiz">
+                        </div>
+                        <div class="d-grid gap-2 mt-3">
+                            <button class="btn btn-primary mb-2" type="submit">TAHRIRLASH</button>
+                          </div>
+
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>

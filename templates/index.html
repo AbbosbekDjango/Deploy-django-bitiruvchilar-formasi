@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    {% load  static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <title>BITIRUVCHILAR</title>
+  </head>
+  <body class=" text-light">
+      <div >
+        <nav class="navbar col-10 mx-auto navbar-expand-lg navbar-dark bg-primary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">ASOSIY SAHIFA</a>
+            <a class="navbar-brand me-auto" href="about">SAHIFA HAQIDA</a>
+          </div>
+          <a type="button" href="/insert" class="btn btn-outline-info text-white   me-2">YANGI MALUMOT QO'SHISH</a>
+          <form class="d-flex"  role="search">
+            <input class="form-control me-2 px-1" name="q" type="search" placeholder="QIDIRISH" aria-label="Search">
+            <button class="btn btn-outline-warning me-2 " type="submit">QIDIRISH</button>
+          </form>
+        </nav>
+        
+      </div>
+        <div class="container-fluid  ">
+            <div class="row">
+               
+                <div class="text-white bg-primary text-center p-4 mt-3 col-10 mx-auto navbar-expand-lg navbar-dark bg-primary">
+                    <h2 class="col-12 mx-auto  d-inline-block">BITIRUVCHILAR QISQA MALUMOTLARI</h2>
+                    <a type="button" href="download" class="btn btn-outline-warning text-danger">MALUMOTLARNI YUKLASH</a>
+                    <div>
+                      
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="container col-10 mx-auto navbar-expand-lg navbar-dark bg-primary ">
+            <hr>
+            <div class="row">              
+                <div>
+                  
+                    
+                    <table style="font-size:18px" class="table mt-3 ">
+                        <thead>
+                          <tr>
+                            <th scope="col">HEMIS_NO</th>
+                            <th scope="col">FAMILYA ISMI SHARIFI</th>
+                            <th scope="col">YO'NALISH</th>
+                            <th scope="col">O'QISH HOLATI</th>
+                            <th scope="col">TAHRIRLASH</th>
+                            <th scope="col">O'CHIRISH</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in data %}
+                          <tr>
+                            <th scope="row">{{d.hemis_id}}</th>
+                            {% comment %} <td>{{}}</td> {% endcomment %}
+                            <td class=""><a class="navbar-brand text-dark " href="{% url 'detail' d.id %}">{{d.fish}}</a></td>
+                            
+                            <td>{{d.yonalish_nomi}}</td>
+                            <td>{{d.grant_kontrakt}}</td>
+                            <td><a type="button"  href="/update/{{d.id}}" class="btn btn-outline-warning">TAHRIRLASH</a></td>
+                            <td><a type="button"   class="deleteModalBtn btn btn-outline-danger">O'CHIRISH</a>
+                              <div class="deletemodal hidden" >
+                                <h2 class="warning-massege">
+                                    Siz haqiqatdan ham 
+                                    <span class="student-info">
+                                        {{d.fish}}
+                                    </span>
+                                    ning ma'lumotlarini o'chirmoqchimisiz
+                        
+                                </h2>
+                                <a type="button" href="/delete/{{d.id}}" class="btn btn-outline-primary yes">Ha</a>
+                                <a class="closeModalBtn"><i class="fa-solid fa-circle-xmark"></i></a>
+                        
+                            </div>
+                            </td>
+                        </tr>
+                          
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+
+                
+              <div class="overlay hidden"></div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Local javascript codes-->
+    <script>
+      const deleteBtn = document.querySelectorAll(".deleteModalBtn");
+      const closeModal = document.querySelectorAll(".closeModalBtn");
+      const modalContainer = document.querySelectorAll('.deletemodal');
+      const overlay =  document.querySelector('.overlay')
+      
+      
+      deleteBtn.forEach((btn,i)=>{
+        btn.addEventListener('click',()=>{
+         deleteBtn[i].nextElementSibling.classList.remove('hidden');
+         overlay.classList.remove('hidden')
+         //console.log(deleteBtn[i].nextElementSibling)
+            
+        })
+      })
+      closeModal.forEach((cBtn,a)=>{
+        cBtn.addEventListener('click',()=>{
+          closeModal[a].parentElement.classList.add('hidden')
+          overlay.classList.toggle('hidden')
+          console.log(closeModal[a]);
+          
+        })
+      })
+      
+
+      
+
+      
+      
+      document.addEventListener('keydown',(e)=>{
+          if(e.key == 'Escape'){
+              
+          }
+      })
+
+      
+    </script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
